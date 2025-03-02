@@ -75,11 +75,15 @@ header p {
 
 .card {
     background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 2px solid #ddd; /* Outline added */
+    border-radius: 12px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
     padding: 20px;
+    height: 100%; /* Make the card height flexible to accommodate more text */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card:hover {
@@ -88,6 +92,7 @@ header p {
 
 .card-body {
     text-align: center;
+    flex-grow: 1; /* Allow the text area to grow and take more space */
 }
 
 .card h3 {
@@ -107,6 +112,8 @@ header p {
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
+    display: inline-block;
+    margin-top: auto; /* Push the button to the bottom of the card */
 }
 
 .card-btn:hover {
