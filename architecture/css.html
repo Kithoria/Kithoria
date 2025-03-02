@@ -1,28 +1,88 @@
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    text-align: center;
     margin: 0;
     padding: 0;
+    background-color: #f5f5f5; /* Light gray background */
 }
 
 header {
-    background: #8B0000;
+    background-color: #333; /* Dark background for header */
     color: white;
     padding: 20px;
+    text-align: center;
 }
 
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+p {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #222; /* Dark gray for the navigation */
+    color: white;
+    padding: 15px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+nav a:hover {
+    color: #ddd;
+}
+
+/* Hero Section */
 .hero {
-    background: url('path-to-your-image.jpg') no-repeat center center/cover; /* Add your background image */
+    background: url('path-to-your-image.jpg') no-repeat center center/cover;
     color: white;
     padding: 60px 20px;
     position: relative;
+    text-align: center;
 }
 
-.hero h2, .hero p {
-    position: relative;
-    z-index: 2; /* Ensure the text is above the background */
+.hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.hero a.button {
+    background-color: #0066cc;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.hero a.button:hover {
+    background-color: #004999;
 }
 
 .hero::before {
@@ -32,23 +92,119 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for better contrast */
-    z-index: 1; /* Put overlay below text */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
-.section-grid {
+.hero h2, .hero p {
+    position: relative;
+    z-index: 2;
+}
+
+/* Projects Section */
+.projects {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.projects h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    max-width: 1000px;
-    margin: auto;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
 }
 
-.section-card {
-    background: white;
+.project-card {
+    background-color: #fff;
     padding: 20px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.project-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.project-card p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.project-card a {
+    color: #0066cc;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.project-card a:hover {
+    color: #004999;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Floating Home Button */
+.floating-home-btn {
+    position: fixed;
+    bottom: 20px; /* Distance from the bottom */
+    right: 20px;  /* Distance from the right */
+    background-color: #f1f1f1; /* Light gray background */
+    color: #333; /* Darker icon color */
+    border-radius: 50%; /* Circular button */
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px; /* Icon size */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 9999; /* Ensure the button stays on top */
+}
+
+.floating-home-btn:hover {
+    background-color: #ddd; /* Slightly darker grey on hover */
+    transform: scale(1.1); /* Slight grow effect on hover */
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .projects h2 {
+        font-size: 2em;
+    }
+
+    .project-card {
+        padding: 15px;
+    }
+
+    .project-card h3 {
+        font-size: 1.3em;
+    }
+
+    .project-card p {
+        font-size: 1em;
+    }
+
+    .project-card a {
+        font-size: 1.1em;
+    }
 }
