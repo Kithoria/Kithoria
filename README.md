@@ -1,3 +1,7 @@
+You can visit the live website here: [Kithoria Website](https://Kithoria.github.io/Kithoria/)
+
+Or access the homepage directly: [Index Page](index.html)
+
 # Kithoria
 
 **Kithoria** is an educational initiative aimed at creating and sharing sustainable, inclusive materials. Our focus is on encouraging positive, lasting memories, personal growth, and collective well-being, while promoting educational resources that can be freely used, modified, and shared for the benefit of individuals and communities.
