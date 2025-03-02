@@ -1,1 +1,398 @@
-.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 1</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafc;
+            color: #333;
+        }
+
+        /* Container for main content */
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            background-color: #FF5733; /* Primary Red */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #ff9b8f; /* Light Red border */
+            position: relative; /* For proper positioning of hamburger menu */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ffcc00; /* Yellow */
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            margin-top: 10px;
+        }
+
+        /* Hamburger Menu */
+        .hamburger-menu {
+            display: none; /* Hidden by default, will show on mobile */
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            background: none;
+            border: none;
+            z-index: 101;
+            transition: transform 0.3s ease;
+        }
+        
+        .hamburger-menu:hover {
+            transform: scale(1.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            align-items: center;
+            background-color: #1e73b2;
+            position: fixed; /* Changed to fixed for better behavior */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 80px 15px 15px 15px; /* Added top padding for header */
+            box-sizing: border-box;
+            z-index: 100;
+            overflow-y: auto; /* Allow scrolling if needed */
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .mobile-menu.open {
+            display: flex; /* Show when open class is applied */
+            opacity: 1;
+        }
+
+        .mobile-menu a {
+            padding: 12px 25px;
+            font-size: 18px;
+            width: 80%;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .mobile-menu a:hover {
+            background-color: #ffcc00; /* Hover to Yellow */
+            color: #333;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Subject cards */
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .subject-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .subject-card h3 {
+            color: #FF5733;
+            margin-top: 0;
+        }
+
+        .subject-card p {
+            color: #666;
+        }
+
+        .subject-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #1e73b2;
+        }
+
+        /* Welcome section */
+        .welcome-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .welcome-section h2 {
+            color: #1e73b2;
+            margin-top: 0;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        /* Floating button */
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #FF5733; /* Red */
+            color: white;
+            border: none;
+            padding: 18px 22px;
+            font-size: 18px;
+            border-radius: 50%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 99; /* Below menu but above content */
+        }
+
+        .floating-btn:hover {
+            background-color: #ff9b8f; /* Lighter Red */
+            transform: translateY(-3px);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Progress section */
+        .progress-section {
+            background-color: #f0f8ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #4CAF50;
+            width: 0%;
+            transition: width 1s ease;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #FF5733;
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 20px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: block; /* Show hamburger icon on mobile */
+            }
+
+            header h1 {
+                margin-right: 50px; /* Make space for hamburger icon */
+                margin-left: 50px;
+            }
+
+            .floating-btn {
+                bottom: 10px;
+                right: 10px;
+                padding: 15px 20px;
+            }
+
+            .subject-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Grade 1 Curriculum</div>
+    <h1>Welcome to the Learning Journey!</h1>
+    <!-- Hamburger menu button -->
+    <button class="hamburger-menu" id="hamburger" onclick="toggleMenu()">&#9776;</button>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+    <a href="grade_one/index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="grade_one/language-arts.html"><i class="fas fa-book"></i> Language Arts</a>
+    <a href="grade_one/math.html"><i class="fas fa-calculator"></i> Mathematics</a>
+    <a href="grade_one/science.html"><i class="fas fa-flask"></i> Science</a>
+    <a href="grade_one/social-studies.html"><i class="fas fa-globe-americas"></i> Social Studies</a>
+    <a href="grade_one/art.html"><i class="fas fa-palette"></i> Art</a>
+    <a href="grade_one/pe.html"><i class="fas fa-running"></i> Physical Education</a>
+    <a href="grade_one/music.html"><i class="fas fa-music"></i> Music</a>
+    <a href="grade_one/progress.html"><i class="fas fa-chart-line"></i> Track Progress</a>
+</div>
+
+<div class="container">
+    <div class="welcome-section">
+        <h2>Welcome to the Grade 1 Curriculum!</h2>
+        <p>This year marks an exciting beginning to your child's formal education journey. Our comprehensive curriculum is designed to nurture curiosity, build foundational skills, and inspire a lifelong love of learning.</p>
+        <p>Explore each subject below to discover learning objectives, activities, and resources to support your child's development.</p>
+    </div>
+
+    <div class="progress-section">
+        <h3>Your Learning Progress</h3>
+        <p>Track your journey through Grade 1:</p>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
+
+    <div class="subject-grid">
+        <div class="subject-card" onclick="window.location.href='grade_one/language-arts.html'">
+            <div class="subject-icon"><i class="fas fa-book"></i></div>
+            <h3>Language Arts</h3>
+            <p>Reading, writing, speaking, and listening skills.</p>
+        </div>
+
+        <div class="subject-card" onclick="window.location.href='grade_one/math.html'">
+            <div class="subject-icon"><i class="fas fa-calculator"></i></div>
+            <h3>Mathematics</h3>
+            <p>Numbers, counting, basic addition and subtraction.</p>
+        </div>
+
+        <div class="subject-card" onclick="window.location.href='grade_one/science.html'">
+            <div class="subject-icon"><i class="fas fa-flask"></i></div>
+            <h3>Science</h3>
+            <p>Exploring the natural world through observation and experiments.</p>
+        </div>
+
+        <div class="subject-card" onclick="window.location.href='grade_one/social-studies.html'">
+            <div class="subject-icon"><i class="fas fa-globe-americas"></i></div>
+            <h3>Social Studies</h3>
+            <p>Learning about communities, history, and citizenship.</p>
+        </div>
+
+        <div class="subject-card" onclick="window.location.href='grade_one/art.html'">
+            <div class="subject-icon"><i class="fas fa-palette"></i></div>
+            <h3>Art</h3>
+            <p>Creating and appreciating visual arts.</p>
+        </div>
+
+        <div class="subject-card" onclick="window.location.href='grade_one/pe.html'">
+            <div class="subject-icon"><i class="fas fa-running"></i></div>
+            <h3>Physical Education</h3>
+            <p>Movement, coordination, and physical well-being.</p>
+        </div>
+
+        <div class="subject-card" onclick="window.location.href='grade_one/music.html'">
+            <div class="subject-icon"><i class="fas fa-music"></i></div>
+            <h3>Music</h3>
+            <p>Rhythm, singing, and music appreciation.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Button -->
+<button class="floating-btn" onclick="window.location.href='grade_one/index.html'"><i class="fas fa-home"></i></button>
+
+<footer>
+    <p>&copy; 2025 Path to Knowledge. All rights reserved.</p>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>Contact us: <a href="mailto:info@pathtoknowledge.edu">info@pathtoknowledge.edu</a></p>
+</footer>
+
+<script>
+    // Toggle mobile menu visibility
+    function toggleMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const hamburger = document.getElementById('hamburger');
+        menu.classList.toggle('open');
+        
+        // Change hamburger icon to an "X" when menu is open
+        if(menu.classList.contains('open')) {
+            hamburger.innerHTML = '&#10006;'; // "X" symbol
+        } else {
+            hamburger.innerHTML = '&#9776;'; // Hamburger icon
+        }
+    }
+
+    // Simulate progress (for demo purposes)
+    window.onload = function() {
+        setTimeout(function() {
+            document.getElementById('progress-fill').style.width = '35%';
+        }, 500);
+    };
+
+    // Add smooth scrolling to all links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
