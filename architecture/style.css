@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f8f8f8;
+    color: #333;
 }
 
 .container {
@@ -13,27 +14,27 @@ body {
 }
 
 header {
-    text-align: center;
-    background-color: #2980b9;
-    color: white;
+    text-align: left;
     padding: 50px 0;
+    margin-left: 30px;
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 3rem;
+    text-align: left;  /* Left align main title */
 }
 
 header p {
     margin: 10px 0;
     font-size: 1.2rem;
+    text-align: left; /* Left align the byline */
 }
 
 .hero {
     background-color: #ecf0f1;
     padding: 60px 0;
     text-align: center;
-    margin-top: 20px;
 }
 
 .hero h2 {
@@ -46,33 +47,23 @@ header p {
     margin-bottom: 30px;
 }
 
-.btn-primary {
-    background-color: #2980b9;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
 .cards-section {
-    background-color: white;
     padding: 50px 0;
+    background-color: white;
     margin-top: 30px;
 }
 
 .section-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 10px;
-    color: #333;
     text-align: left;
 }
 
 .section-byline {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #7f8c8d;
-    margin-top: 5px;
     text-align: left;
+    margin-bottom: 30px;
 }
 
 .card-grid {
@@ -86,9 +77,8 @@ header p {
     border: 2px solid #ddd; /* Outline added */
     border-radius: 12px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
     padding: 20px;
-    height: 100%; /* Make the card height flexible to accommodate more text */
+    transition: transform 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -96,11 +86,6 @@ header p {
 
 .card:hover {
     transform: translateY(-10px);
-}
-
-.card-body {
-    text-align: center;
-    flex-grow: 1; /* Allow the text area to grow and take more space */
 }
 
 .card h3 {
@@ -121,18 +106,10 @@ header p {
     border-radius: 5px;
     font-weight: bold;
     display: inline-block;
-    margin-top: auto; /* Push the button to the bottom of the card */
 }
 
 .card-btn:hover {
     background-color: #16a085;
-}
-
-.footer {
-    background-color: #2980b9;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
 }
 
 .floating-home-btn {
