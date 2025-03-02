@@ -62,9 +62,17 @@ header p {
 }
 
 .section-title {
-    text-align: center;
     font-size: 2rem;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: left;
+}
+
+.section-byline {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-top: 5px;
+    text-align: left;
 }
 
 .card-grid {
