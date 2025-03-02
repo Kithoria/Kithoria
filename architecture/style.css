@@ -173,9 +173,28 @@ footer {
     z-index: 9999; /* Ensure the button stays on top */
 }
 
+/* Floating Home Button */
+.floating-home-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2980b9;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.5em;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
 .floating-home-btn:hover {
-    background-color: #ddd; /* Slightly darker grey on hover */
-    transform: scale(1.1); /* Slight grow effect on hover */
+    background-color: #16a085;
+}
+
+.floating-home-btn i {
+    font-size: 1.8em;
 }
 
 /* Mobile Styles */
