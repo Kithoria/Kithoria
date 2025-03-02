@@ -1,1 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path to Knowledge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+            color: #333;
+        }
+        
+        /* Header */
+        header {
+            background-color: #2a8dff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.2em;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            padding: 14px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        
+        /* Mobile Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            background: none;
+            border: none;
+            z-index: 101;
+        }
+        
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 80px 15px 15px 15px;
+            box-sizing: border-box;
+            z-index: 100;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.open {
+            display: flex;
+        }
+        
+        .mobile-menu a {
+            padding: 12px 25px;
+            font-size: 18px;
+            width: 80%;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .mobile-menu a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        
+        /* Container for main content */
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 60px; /* Space for footer */
+        }
+        
+        /* School level sections */
+        .school-level {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .school-level h2 {
+            color: #2a8dff;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        /* Grade cards grid */
+        .grade-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        /* Grade section styling */
+        .grade-section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .grade-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .grade-section h3 {
+            color: #2a8dff;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .grade-section h3 i {
+            margin-right: 10px;
+        }
+        
+        .grade-section p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        /* Grade button styling */
+        .grade-button {
+            background-color: #2a8dff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .grade-button:hover {
+            background-color: #1a70c4;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .grade-button i {
+            margin-left: 8px;
+        }
+        
+        /* Footer styling */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 90;
+        }
+        
+        footer p {
+            margin: 0;
+        }
+        
+        .social-icons {
+            margin-top: 10px;
+        }
+        
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: #2a8dff;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            background-color: #2a8dff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #1a70c4;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: block;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .grade-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
+                margin-right: 40px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
 
+<header>
+    <h1>Path to Knowledge</h1>
+    <p>Your Journey from 1st to 12th Grade</p>
+    <button class="hamburger-menu" id="hamburger" onclick="toggleMenu()">&#9776;</button>
+</header>
+
+<nav>
+    <a href="#"><i class="fas fa-home"></i> Home</a>
+    <a href="#elementary"><i class="fas fa-school"></i> Elementary</a>
+    <a href="#middle-school"><i class="fas fa-book"></i> Middle School</a>
+    <a href="#high-school"><i class="fas fa-graduation-cap"></i> High School</a>
+    <a href="#"><i class="fas fa-chalkboard-teacher"></i> Resources</a>
+    <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+    <a href="#"><i class="fas fa-home"></i> Home</a>
+    <a href="#elementary"><i class="fas fa-school"></i> Elementary</a>
+    <a href="#middle-school"><i class="fas fa-book"></i> Middle School</a>
+    <a href="#high-school"><i class="fas fa-graduation-cap"></i> High School</a>
+    <a href="#"><i class="fas fa-chalkboard-teacher"></i> Resources</a>
+    <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+</div>
+
+<div class="container">
+
+    <!-- Elementary School (Grades 1-6) -->
+    <section id="elementary" class="school-level">
+        <h2><i class="fas fa-school"></i> Elementary School: Grades 1-6</h2>
+        <p>Build a solid foundation in math, reading, science, and social studies.</p>
+
+        <div class="grade-grid">
+            <section class="grade-section" id="grade1">
+                <h3><i class="fas fa-star"></i> Grade 1</h3>
+                <p>Start your learning journey with basic math, science, and reading!</p>
+                <button class="grade-button" onclick="window.location.href='grade1.html'">Go to Grade 1 <i class="fas fa-arrow-right"></i></button>
+            </section>
+
+            <section class="grade-section" id="grade2">
+                <h3><i class="fas fa-star"></i> Grade 2</h3>
+                <p>Build your math skills and explore the wonders of the world around you!</p>
+                <button class="grade-button" onclick="window.location.href='grade2.html'">Go to Grade 2 <i class="fas fa-arrow-right"></i></button>
+            </section>
+
+            <section class="grade-section" id="grade3">
+                <h3><i class="fas fa-star"></i> Grade 3</h3>
+                <p>Delve into more complex math problems, and start learning about history and geography!</p>
+                <button class="grade-button" onclick="window.location.href='grade3.html'">Go to Grade 3 <i class="fas fa-arrow-right"></i></button>
+            </section>
+
+            <section class="grade-section" id="grade4">
+                <h3><i class="fas fa-star"></i> Grade 4</h3>
+                <p>Learn fractions, deeper science topics, and begin writing essays.</p>
+                <button class="grade-button" onclick="window.location.href='grade4.html'">Go to Grade 4 <i class="fas fa-arrow-right"></i></button>
+            </section>
+
+            <section class="grade-section" id="grade5">
+                <h3><i class="fas fa-star"></i> Grade 5</h3>
+                <p>Start to prepare for middle school with more advanced math and science concepts.</p>
+                <button class="grade-button" onclick="window.location.href='grade5.html'">Go to Grade 5 <i class="fas fa-arrow-right"></i></button>
+            </section>
+
+            <section class="grade-section" id="grade6">
+                <h3><i class="fas fa-star"></i> Grade 6</h3>
+                <p>Explore algebra, complex science experiments, and dive into world history.</p>
+                <button class="grade-button" onclick="window.location.href='grade6.html'">Go to Grade 6 <i class="fas fa-arrow-right"></i></button>
+            </section>
+        </div>
+    </section>
+
+    <!-- Middle School (Grades 7-9) -->
+    <section id="middle-school" class="school-level">
+        <h2><i class="fas fa-book"></i> Middle School: Grades 7-9</h2>
+        <p>Enhance your skills in math, science, literature, and social studies while preparing for high school.</p>
+
+        <div class="grade-grid">
+            <section class="grade-section" id="grade7">
+                <h3><i class="fas fa-pencil-alt"></i> Grade 7</h3>
+                <p>Enhance your understanding of algebra, explore basic geometry, and start writing research papers.</p>
+                <button class="grade-button" onclick="window.location.href='grade7.html'">Go to Grade 7 <i class="fas fa-arrow-right"></i></button>
+            </section>
+
+            <section class="grade-section" id="grade8">
+                <h3><i class="fas fa-pencil-alt"></i> Grade 8</h3>
+                <p>Begin learning about biology, chemistry, and advanced writing techniques.</p>
+                <button class="grade-button" onclick="window.location.href='grade8.html'">Go to Grade 8 <i class="fas fa-arrow-right"></i></button>
+            </section>
+
+            <section class="grade-section" id="grade9">
+                <h3><i class="fas fa-pencil-alt"></i> Grade 9</h3>
+                <p>Prepare for high school with more advanced topics in algebra, geometry, and introductory high school subjects.</p>
+                <button class="grade-button" onclick="window.location.href='grade9.html'">Go to Grade 9 <i class="fas fa-arrow-right"></i></button>
+            </section>
+        </div>
+    </section>
+
+    <!-- High School (Grades 10-12) -->
+    <section id="high-school" class="school-level">
+        <h2><i class="fas fa-graduation-cap"></i> High School: Grades 10-12</h2>
+        <p>Master advanced concepts in math, science, and English while preparing for college and career readiness.</p>
+
+        <div class="grade-grid">
+            <section class="grade-section" id="grade10">
+                <h3><i class="fas fa-microscope"></i> Grade 10</h3>
+                <p>Start learning more advanced subjects such as algebra 2, biology, and world history.</p>
+                <button class="grade-button" onclick="window.location.href='grade10.html'">Go to Grade 10 <i class="fas fa-arrow-right"></i></button>
+            </section>
+
+            <section class="grade-section" id="grade11">
+                <h3><i class="fas fa-microscope"></i> Grade 11</h3>
+                <p>Learn about chemistry, literature, and U.S. history while preparing for the SATs and college applications.</p>
+                <button class="grade-button" onclick="window.location.href='grade11.html'">Go to Grade 11 <i class="fas fa-arrow-right"></i></button>
+            </section>
+
+            <section class="grade-section" id="grade12">
+                <h3><i class="fas fa-microscope"></i> Grade 12</h3>
+                <p>Complete your high school journey with calculus, physics, advanced literature, and career preparation.</p>
+                <button class="grade-button" onclick="window.location.href='grade12.html'">Go to Grade 12 <i class="fas fa-arrow-right"></i></button>
+            </section>
+        </div>
+    </section>
+
+</div>
+
+<!-- Back to top button -->
+<a href="#" class="back-to-top" id="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+<footer>
+    <p>&copy; 2025 Path to Knowledge. All rights reserved.</p>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+</footer>
+
+<script>
+    // Toggle mobile menu
+    function toggleMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const hamburger = document.getElementById('hamburger');
+        menu.classList.toggle('open');
+        
+        if(menu.classList.contains('open')) {
+            hamburger.innerHTML = '&#10006;'; // X symbol
+        } else {
+            hamburger.innerHTML = '&#9776;'; // Hamburger icon
+        }
+    }
+    
+    // Back to top button visibility
+    window.onscroll = function() {
+        const backToTop = document.getElementById('back-to-top');
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    };
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
